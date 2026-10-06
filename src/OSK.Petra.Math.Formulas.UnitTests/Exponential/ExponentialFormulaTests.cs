@@ -18,9 +18,9 @@ public class ExponentialFormulaTests
         var result = calculator.Calculate(value);
 
         // Assert
-        var result = System.Math.Pow(constant, value);
+        var expected = System.Math.Pow(constant, value);
 
-        Assert.Equal(result, result);
+        Assert.Equal(expected, result);
     }
 
     #endregion
