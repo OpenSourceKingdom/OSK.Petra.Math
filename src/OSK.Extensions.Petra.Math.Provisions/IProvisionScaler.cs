@@ -1,7 +1,7 @@
 ﻿using OSK.Petra.Provisions.Models;
 using System.Collections.Generic;
 
-namespace OSK.Extensions.Petra.Calculators.Provisions;
+namespace OSK.Extensions.Petra.Math.Provisions;
 
 /// <summary>
 /// A scaler that is able to perform scaling for a variety of provisions
