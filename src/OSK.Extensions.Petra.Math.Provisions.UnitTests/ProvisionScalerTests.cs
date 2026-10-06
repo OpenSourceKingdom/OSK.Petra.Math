@@ -2,8 +2,9 @@
 using OSK.Extensions.Petra.Math.Provisions.Models;
 using OSK.Petra.Math.Formulas;
 using OSK.Petra.Provisions.Models;
+using OSK.Extensions.Petra.Math.Provisions;
 
-namespace OSK.Extensions.Petra.Calculators.Provisions.UnitTests;
+namespace OSK.Extensions.Petra.Math.Provisions.UnitTests;
 
 public class ProvisionScalerTests
 {
@@ -11,7 +12,7 @@ public class ProvisionScalerTests
 
     private readonly Mock<IFormula> _mockFormula;
 
-    private readonly ProvisionScaler _calculator;
+    private readonly ProvisionScaler _scaler;
 
     #endregion
 
@@ -21,7 +22,7 @@ public class ProvisionScalerTests
     {
         _mockFormula = new();
 
-        _calculator = new(_mockFormula.Object);
+        _scaler = new(_mockFormula.Object);
     }
 
     #endregion
@@ -29,7 +30,7 @@ public class ProvisionScalerTests
     #region Constructors Tests
 
     [Fact]
-    public void Constructor_WithNullDefaultCalculator_ThrowsArgumentNullException()
+    public void Constructor_WithNullDefaultFormula_ThrowsArgumentNullException()
     {
         // Arrange/Act/Assert
         Assert.Throws<ArgumentNullException>(() => new ProvisionScaler((IFormula)null!));
@@ -52,14 +53,14 @@ public class ProvisionScalerTests
     public void Scale_WithNullOrEmptyBaseProvisions_ReturnsEmpty(bool useNull)
     {
         // Arrange/Act
-        var result = _calculator.Scale(useNull ? null! : [], 1);
+        var result = _scaler.Scale(useNull ? null! : [], 1);
 
         // Assert
         Assert.Empty(result);
     }
 
     [Fact]
-    public void Scale_UsingDefaultCalculator_WhenNoSpecificStrategyExists_AppliesDefaultCalculator()
+    public void Scale_UsingDefaultFormula_WhenNoSpecificStrategyExists_AppliesDefaultFormula()
     {
         // Arrange
         var provisionId = Guid.NewGuid();
@@ -68,7 +69,7 @@ public class ProvisionScalerTests
         _mockFormula.Setup(c => c.Calculate(It.IsAny<double>())).Returns(75.5);
 
         // Act
-        var result = _calculator.Scale(baseProvisions, 3).ToList();
+        var result = _scaler.Scale(baseProvisions, 3).ToList();
 
         // Assert
         Assert.Single(result);
@@ -83,19 +84,19 @@ public class ProvisionScalerTests
     [InlineData(ScalingMode.Subtract)]
     [InlineData(ScalingMode.Multiply)]
     [InlineData(ScalingMode.Divide)]
-    public void Scale_UsingSpecificProvisionStrategy_DifferentScalingModes_WhenStrategyExists_AppliesSpecificCalculator(ScalingMode scalingMode)
+    public void Scale_UsingSpecificProvisionStrategy_DifferentScalingModes_WhenStrategyExists_AppliesSpecificFormula(ScalingMode scalingMode)
     {
         // Arrange
         var goldId = Guid.NewGuid();
         var lumberId = Guid.NewGuid();
 
-        var mockGoldCalculator = new Mock<IFormula>();
-        mockGoldCalculator.Setup(c => c.Calculate(It.IsAny<double>()))
+        var mockGoldFormula = new Mock<IFormula>();
+        mockGoldFormula.Setup(c => c.Calculate(It.IsAny<double>()))
             .Returns(120.0);
 
         var strategies = new List<ProvisionScalingStrategy>
         {
-            new(goldId, mockGoldCalculator.Object)
+            new(goldId, mockGoldFormula.Object)
         };
 
         var baseProvisions = new[]
@@ -104,10 +105,10 @@ public class ProvisionScalerTests
             new Provision(lumberId, 50)
         };
 
-        var calculator = new ProvisionScaler(strategies);
+        var Formula = new ProvisionScaler(strategies);
 
         // Act
-        var result = calculator.Scale(baseProvisions, 2).ToList();
+        var result = Formula.Scale(baseProvisions, 2).ToList();
 
         // Assert
         Assert.Equal(2, result.Count);
@@ -122,15 +123,15 @@ public class ProvisionScalerTests
             _ => 120
         };
 
-        // Gold used specific calculator
+        // Gold used specific Formula
         Assert.Equal(goldId, result[0].Id);
         Assert.Equal(120, result[0].Amount);;
 
-        // Lumber had no calculator (default is null), so amount remains unScaled
+        // Lumber had no Formula (default is null), so amount remains unScaled
         Assert.Equal(lumberId, result[1].Id);
         Assert.Equal(50, result[1].Amount);
 
-        mockGoldCalculator.Verify(c => c.Calculate(2), Times.Once);
+        mockGoldFormula.Verify(c => c.Calculate(2), Times.Once);
     }
 
     [Fact]
@@ -146,7 +147,7 @@ public class ProvisionScalerTests
 
         var strategies = new List<ProvisionScalingStrategy>
         {
-            // Null ProvisionDefinitionId sets the default calculator in this constructor overload
+            // Null ProvisionDefinitionId sets the default Formula in this constructor overload
             new(mockDefault.Object),
             new(manaId, mockManaFormula.Object)
         };
@@ -157,10 +158,10 @@ public class ProvisionScalerTests
             new Provision(manaId, 20)
         };
 
-        var calculator = new ProvisionScaler(strategies);
+        var Formula = new ProvisionScaler(strategies);
 
         // Act
-        var result = calculator.Scale(baseProvisions, 1).ToList();
+        var result = Formula.Scale(baseProvisions, 1).ToList();
 
         // Assert
         Assert.Equal(2, result.Count);

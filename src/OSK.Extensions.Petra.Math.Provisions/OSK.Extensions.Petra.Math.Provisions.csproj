@@ -7,10 +7,10 @@
 		
 		<Description>An extension that combines the math formulas with provisions to accomodate economy provision scaling</Description>
 		<PackageTags>OpenSourceKingdom, OpenSource, Petra, Game, Framework, Suite, Tool, Math, Equation, Calculate, Calculator, Scale, Economy, Provision</PackageTags>
-		<Title>OSK.Extensions.Petra.Calculators.Provisions</Title>
+		<Title>OSK.Extensions.Petra.Math.Provisions</Title>
 		<Authors>BlankDev117</Authors>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<RepositoryUrl>https://github.com/OpenSourceKingdom/OSK.Petra.Calculators</RepositoryUrl>
+		<RepositoryUrl>https://github.com/OpenSourceKingdom/OSK.Petra.Math</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>

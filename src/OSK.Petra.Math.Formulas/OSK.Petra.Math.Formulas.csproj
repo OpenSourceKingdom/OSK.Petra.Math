@@ -7,10 +7,10 @@
 		
 		<Description>A set of math functions, formulas, and the like to help with math calculations within a game or similar application</Description>
 		<PackageTags>OpenSourceKingdom, OpenSource, Petra, Game, Framework, Suite, Tool, Math, Equation, Calculate, Calculator, Formula, Function, Economy</PackageTags>
-		<Title>OSK.Petra.Calculators.Inflation</Title>
+		<Title>OSK.Petra.Math.Formulas</Title>
 		<Authors>BlankDev117</Authors>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<RepositoryUrl>https://github.com/OpenSourceKingdom/OSK.Petra.Calculators</RepositoryUrl>
+		<RepositoryUrl>https://github.com/OpenSourceKingdom/OSK.Petra.Math</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>

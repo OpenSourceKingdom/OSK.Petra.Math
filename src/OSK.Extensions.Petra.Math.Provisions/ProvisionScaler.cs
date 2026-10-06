@@ -4,8 +4,9 @@ using OSK.Petra.Provisions.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using OSK.Extensions.Petra.Math.Provisions;
 
-namespace OSK.Extensions.Petra.Calculators.Provisions;
+namespace OSK.Extensions.Petra.Math.Provisions;
 
 /// <summary>
 /// A special scaler for collections of provisions
