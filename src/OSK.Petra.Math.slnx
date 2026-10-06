@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="OSK.Extensions.Petra.Math.Provisions.UnitTests/OSK.Extensions.Petra.Math.Provisions.UnitTests.csproj" Id="c67a8503-457f-40bc-8771-20cb0414cd01" />
+  <Project Path="OSK.Extensions.Petra.Math.Provisions/OSK.Extensions.Petra.Math.Provisions.csproj" Id="3fc70c0f-bb61-4f81-a2b3-607d2dc0946e" />
+  <Project Path="OSK.Petra.Math.Formulas.UnitTests/OSK.Petra.Math.Formulas.UnitTests.csproj" />
+  <Project Path="OSK.Petra.Math.Formulas/OSK.Petra.Math.Formulas.csproj" />
+</Solution>
