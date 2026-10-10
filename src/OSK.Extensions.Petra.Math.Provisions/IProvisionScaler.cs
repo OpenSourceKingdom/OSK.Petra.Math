@@ -14,5 +14,5 @@ public interface IProvisionScaler
     /// <param name="baseProvisions">The initial base provisions to be scaled</param>
     /// <param name="count">The count/iteration for the scaling</param>
     /// <returns>The scaled provisions</returns>
-    IEnumerable<Provision> Scale(IEnumerable<Provision> baseProvisions, int count);
+    IEnumerable<Provision> Scale(IEnumerable<Provision> baseProvisions, long count);
 }
