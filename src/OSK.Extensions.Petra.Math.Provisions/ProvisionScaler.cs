@@ -69,7 +69,7 @@ public class ProvisionScaler: IProvisionScaler
     #region IProvisionScaler
 
     /// <inheritdoc/>
-    public IEnumerable<Provision> Scale(IEnumerable<Provision> baseProvisions, int count)
+    public IEnumerable<Provision> Scale(IEnumerable<Provision> baseProvisions, long count)
     {
         if (baseProvisions is null || !baseProvisions.Any())
         {
